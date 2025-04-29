@@ -34,6 +34,10 @@ class PrescriptionViewSet(viewsets.ModelViewSet):
     serializer_class = PrescriptionSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def perform_create(self, serializer):
+        doctor = self.request.user.doctor
+        serializer.save(doctor=doctor)
+
 
 class NoteViewSet(viewsets.ModelViewSet):
     queryset = Note.objects.all()

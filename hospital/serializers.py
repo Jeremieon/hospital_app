@@ -75,5 +75,5 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token["given_name"] = user.first_name
         token["family_name"] = user.last_name
         token["email"] = user.email
-        token["roles"] = [group.name for group in user.groups.all()]
+        token["roles"] = [group.name for group in user.groups.all()][0]
         return token
